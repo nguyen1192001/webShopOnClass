@@ -506,3 +506,6 @@ body {
 .imgIncart {
   width: 80px;
   height: 52px; }
+
+.input-qty {
+  font-size: 1 rem; }
