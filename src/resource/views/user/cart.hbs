@@ -1,0 +1,159 @@
+
+<div class="header">
+    <a class="header__logo" href="customer">
+        <img src="/img/logo-con-tho-31.png" alt="logo-shop" class="header__logo-img">
+    </a>
+    <div class="header_categories">
+        <div class="header_categories-content">
+            <div class="header_categories-icon">
+                <i class="ti-menu"></i>
+            </div>
+            <div class="header_categories-title">Danh mục <br> Sản Phẩm</div>
+        </div>
+
+    </div>
+
+    <div class="header_find">
+        <input type="text" placeholder="tìm sản phẩm mong muốn..." class="header_find-left">
+        <div class="header_find-right">
+            <i class="ti-search header_find-right-icon"></i>
+            <p class="header_find-right-title">Tìm Kiếm</p>
+        </div>
+    </div>
+    <div class="header_account--log-in--log-out">
+        <div class="header_account--log-in--log-out__content">
+            <div class="header_account--log-in--log-out__icon">
+                <i class="ti-user"></i>
+            </div>
+            <div class="header_account--log-in--log-out-des">
+                <p class="log-in_log-out">Tài Khoản</p>
+                <p class="accout">Trần Thảo Nguyên</p>
+            </div>
+        </div>
+        <!-- box login/logout -->
+        <div class="header_account--log-in--log-out__box_page2">
+            <ul class="header_account--log-in--log-out__box-list_page2">
+                <li><a href="/">đăng xuất</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container1">
+    <div class="mt-4" style="padding-bottom: 20px;">
+        <h3>GIỎ HÀNG</h3>
+
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên sản phẩm</th>
+                     <th scope="col">Hình ảnh</th>
+                    <th scope="col">giá</th>
+                    <th scope="col">số lượng</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+
+                    <th scope="row">{{ sum @index 1 }}</th>
+                    <td id="name" name="name">{{this.name}}</td>
+                    <td id="img" name="img">
+                         <img class="imgIncart" src="{{this.img}}" alt="Card image cap">
+                    </td>
+                    <td id="prince" name="prince">{{this.prince}}</td>
+                    <td id="count" name="count"> <button
+                            onclick="updateCount('{{this._id}}','{{this.count}}','plus',this)">-</button> {{this.count}}
+                        <button onclick="updateCount('{{this._id}}','{{this.count}}','minus',this)">+</button>
+                    </td>
+                    <td>
+                        <a href="" class="" data-toggle="modal" data-id="{{this._id}}"
+                            data-target="#delete-product-modal">xóa</a>
+                    </td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <a href="customer"> GO SHOPPING</a>
+                        <a href="user/information" type="button" id="delete-allCollection-CustomeInformation" class="btn btn-primary">MUA HÀNG</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    {{!-- confirm delete course--}}
+
+    <div id="delete-product-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Xóa sản phẩm trong giỏ hàng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn có chắc muốn xóa sản phẩm.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-delete-product-modal" type="button" class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+</div>
+<form name="delete-AllCollection-form" method="POST"></form>
+<form name="delete-product-form" method="POST"></form>
+<form style="display: none;" name="countUpdate" method="POST"></form>
+<script>
+   
+    let updateCount = function (id, count, flag, object) {
+        let form = document.forms['countUpdate'];
+        let input = document.createElement('input');
+        input.setAttribute('name', 'count')
+        input.setAttribute('value', count);
+        let input2 = document.createElement('input');
+        input2.setAttribute('name', 'flag')
+        input2.setAttribute('value', flag);
+        form.appendChild(input);
+        form.appendChild(input2);
+        form.action = '/' + id + '?_method=PUT';
+        form.submit();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var ProductId
+        var deleteForm = document.forms['delete-product-form']
+        var btnDeleteCourse = document.getElementById('btn-delete-product-modal')
+        var deleteAllCollection = document.forms['delete-AllCollection-form']
+        var btnDeleteAllCollection = document.getElementById('delete-allCollection-CustomeInformation')
+
+
+        // when dialog confirm cliked
+        $('#delete-product-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            ProductId = button.data('id')
+        })
+        btnDeleteCourse.onclick = function () {
+            deleteForm.action = '/deleteCustomInformation/' + ProductId + '?_method=DELETE'
+            deleteForm.submit()
+        }
+        btnDeleteAllCollection.onclick = function () {
+            deleteAllCollection.action = '/user/information'  + '?_method=DELETE'
+            deleteAllCollection.submit()
+        }
+    })
+</script>

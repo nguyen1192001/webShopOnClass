@@ -1,0 +1,13 @@
+ {{> header }}
+<div class="container">
+    {{#each product}}
+    <div class="card" style="width: 12rem; margin:10px">
+        <img class="card-img-top" src="{{this.img}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text">{{this.prince}}</p>
+            <a href="/admin" class="btn btn-primary">mua hang</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

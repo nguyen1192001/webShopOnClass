@@ -1,0 +1,62 @@
+<div class="header">
+    <a class="header__logo" href="/">
+        <img src="/img/logo-con-tho-31.png" alt="logo-shop" class="header__logo-img">
+    </a>
+    <div class="header_categories">
+        <div class="header_categories-content">
+            <div class="header_categories-icon">
+                <i class="ti-menu"></i>
+            </div>
+            <div class="header_categories-title">Danh mục <br> Sản Phẩm</div>
+        </div>
+
+    </div>
+
+    <div class="header_find">
+        <input type="text" placeholder="tìm sản phẩm mong muốn..." class="header_find-left">
+        <div class="header_find-right">
+            <i class="ti-search header_find-right-icon"></i>
+            <p class="header_find-right-title">Tìm Kiếm</p>
+        </div>
+    </div>
+    <div class="header_account--log-in--log-out">
+        <div class="header_account--log-in--log-out__content">
+            <div class="header_account--log-in--log-out__icon">
+                <i class="ti-user"></i>
+            </div>
+            <div class="header_account--log-in--log-out-des">
+                <p class="log-in_log-out">Tài Khoản</p>
+                <p class="accout">Trần Thảo Nguyên</p>
+            </div>
+        </div>
+        <!-- box login/logout -->
+        <div class="header_account--log-in--log-out__box_page2">
+            <ul class="header_account--log-in--log-out__box-list_page2">
+                <li><a href="/product/create">đăng sản phẩm</a></li>
+                <li><a href="/me/store/product">quản lí sản phẩm</a></li>
+                <li><a href="/me/store/customer">danh sách khách hàng</a></li>
+                <li><a href="/">đăng xuất</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container1 " style="padding: 0 54px;">
+    <div style=" padding-top: 10vh; padding-bottom: 20vh;">
+        <h2>đăng sản phẩm</h3>
+        <form  method="POST" action="/product/store">
+            <div class="form-group">
+                <label for="exampleInputEmail1">ảnh sản phẩm</label>
+                <input type="text" class="form-control"  id="img" name="img">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">tên sản phẩm</label>
+                <input type="text" class="form-control"  id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">giá bán</label>
+                <input type="text" class="form-control"  id="prince" name="prince">
+            </div>
+            <button type="submit" class="btn btn-primary" >ĐĂNG SẢN PHẨM</button>
+        </form>
+    </div>
+</div>
