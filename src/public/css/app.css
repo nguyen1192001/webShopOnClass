@@ -56,10 +56,11 @@ body {
 
 .thankYouCustomer-title {
   position: absolute;
-  width: 300px;
-  font-size: 30px;
+  width: 600px;
+  font-size: 46px;
+  color: var(--while-color);
   top: 140px;
-  right: 20%;
+  right: 10%;
   text-align: center; }
 
 * {
